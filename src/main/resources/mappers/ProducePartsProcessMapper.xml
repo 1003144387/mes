@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crsri.mes.dao.ProducePartsProcessMapper">
+	<resultMap id="BaseResultMap"
+		type="com.crsri.mes.entity.ProducePartsProcess">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="parts_id" property="partsId" jdbcType="VARCHAR" />
+		<result column="parts_name" property="partsName"
+			jdbcType="VARCHAR" />
+		<result column="specification" property="specification"
+			jdbcType="INTEGER" />
+		<result column="inspection_status" property="inspectionStatus"
+			jdbcType="INTEGER" />
+		<result column="inspection_operator"
+			property="inspectionOperator" jdbcType="VARCHAR" />
+		<result column="inspection_start_time"
+			property="inspectionStartTime" jdbcType="TIMESTAMP" />
+		<result column="inspection_stop_time"
+			property="inspectionStopTime" jdbcType="TIMESTAMP" />
+		<result column="inspection_approve_id"
+			property="inspectionApproveId" jdbcType="VARCHAR" />
+		<result column="inspection_approve_status"
+			property="inspectionApproveStatus" jdbcType="INTEGER" />
+		<result column="inspection_approve_result"
+			property="inspectionApproveResult" jdbcType="INTEGER" />
+		<result column="stock_status" property="stockStatus"
+			jdbcType="INTEGER" />
+		<result column="stock_position" property="stockPosition"
+			jdbcType="VARCHAR" />
+		<result column="stock_in_operator" property="stockInOperator"
+			jdbcType="VARCHAR" />
+		<result column="stock_in_start_time"
+			property="stockInStartTime" jdbcType="TIMESTAMP" />
+		<result column="stock_in_stop_time" property="stockInStopTime"
+			jdbcType="TIMESTAMP" />
+		<result column="stock_in_approve_id"
+			property="stockInApproveId" jdbcType="VARCHAR" />
+		<result column="stock_in_approve_status"
+			property="stockInApproveStatus" jdbcType="INTEGER" />
+		<result column="stock_in_approve_result"
+			property="stockInApproveResult" jdbcType="INTEGER" />
+		<result column="stock_out_operator" property="stockOutOperator"
+			jdbcType="VARCHAR" />
+		<result column="stock_out_start_time"
+			property="stockOutStartTime" jdbcType="TIMESTAMP" />
+		<result column="stock_out_stop_time"
+			property="stockOutStopTime" jdbcType="TIMESTAMP" />
+		<result column="stock_out_approve_id"
+			property="stockOutApproveId" jdbcType="VARCHAR" />
+		<result column="stock_out_approve_status"
+			property="stockOutApproveStatus" jdbcType="INTEGER" />
+		<result column="stock_out_approve_result"
+			property="stockOutApproveResult" jdbcType="INTEGER" />
+		<result column="defend_operator" property="defendOperator"
+			jdbcType="VARCHAR" />
+		<result column="defend_status" property="defendStatus"
+			jdbcType="INTEGER" />
+		<result column="defend_approve_id" property="defendApproveId"
+			jdbcType="VARCHAR" />
+		<result column="defend_start_time" property="defendStartTime"
+			jdbcType="TIMESTAMP" />
+		<result column="defend_stop_time" property="defendStopTime"
+			jdbcType="TIMESTAMP" />
+		<result column="defend_approve_status"
+			property="defendApproveStatus" jdbcType="INTEGER" />
+		<result column="defend_approve_result"
+			property="defendApproveResult" jdbcType="INTEGER" />
+		<result column="soft_install_operator"
+			property="softInstallOperator" jdbcType="VARCHAR" />
+		<result column="soft_install_version"
+			property="softInstallVersion" jdbcType="VARCHAR" />
+		<result column="soft_install_start_time"
+			property="softInstallStartTime" jdbcType="TIMESTAMP" />
+		<result column="soft_install_stop_time"
+			property="softInstallStopTime" jdbcType="TIMESTAMP" />
+		<result column="soft_install_approve_id"
+			property="softInstallApproveId" jdbcType="VARCHAR" />
+		<result column="soft_install_approve_status"
+			property="softInstallApproveStatus" jdbcType="INTEGER" />
+		<result column="soft_install_approve_result"
+			property="softInstallApproveResult" jdbcType="INTEGER" />
+		<result column="function_inspection_operator"
+			property="functionInspectionOperator" jdbcType="VARCHAR" />
+		<result column="function_inspection_status"
+			property="functionInspectionStatus" jdbcType="INTEGER" />
+		<result column="function_inspection_start_time"
+			property="functionInspectionStartTime" jdbcType="TIMESTAMP" />
+		<result column="function_inspection_sotp_time"
+			property="functionInspectionSotpTime" jdbcType="TIMESTAMP" />
+		<result column="function_inspection_approve_id"
+			property="functionInspectionApproveId" jdbcType="VARCHAR" />
+		<result column="function_inspection_approve_status"
+			property="functionInspectionApproveStatus" jdbcType="INTEGER" />
+		<result column="function_inspection_approve_result"
+			property="functionInspectionApproveResult" jdbcType="INTEGER" />
+		<result column="used" property="used" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime"
+			jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, parts_id, parts_name, specification, inspection_status,
+		inspection_operator,
+		inspection_start_time, inspection_stop_time,
+		inspection_approve_id,
+		inspection_approve_status,
+		inspection_approve_result, stock_status, stock_position,
+		stock_in_operator, stock_in_start_time,
+		stock_in_stop_time,
+		stock_in_approve_id, stock_in_approve_status,
+		stock_in_approve_result,
+		stock_out_operator, stock_out_start_time, stock_out_stop_time,
+		stock_out_approve_id,
+		stock_out_approve_status,
+		stock_out_approve_result, defend_operator,
+		defend_status,
+		defend_approve_id, defend_start_time, defend_stop_time,
+		defend_approve_status,
+		defend_approve_result,
+		soft_install_operator,
+		soft_install_version, soft_install_start_time,
+		soft_install_stop_time,
+		soft_install_approve_id, soft_install_approve_status,
+		soft_install_approve_result,
+		function_inspection_operator,
+		function_inspection_status,
+		function_inspection_start_time,
+		function_inspection_sotp_time, function_inspection_approve_id,
+		function_inspection_approve_status,
+		function_inspection_approve_result, used,create_time, update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_prduce_parts_process
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		t_prduce_parts_process
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.crsri.mes.entity.ProducePartsProcess">
+		update t_prduce_parts_process
+		<set>
+			<if test="partsId != null">
+				parts_id = #{partsId,jdbcType=VARCHAR},
+			</if>
+			<if test="partsName != null">
+				parts_name = #{partsName,jdbcType=VARCHAR},
+			</if>
+			<if test="specification != null">
+				specification = #{specification,jdbcType=INTEGER},
+			</if>
+			<if test="inspectionStatus != null">
+				inspection_status = #{inspectionStatus,jdbcType=INTEGER},
+			</if>
+			<if test="inspectionOperator != null">
+				inspection_operator =
+				#{inspectionOperator,jdbcType=VARCHAR},
+			</if>
+			<if test="inspectionStartTime != null">
+				inspection_start_time =
+				#{inspectionStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="inspectionStopTime != null">
+				inspection_stop_time =
+				#{inspectionStopTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="inspectionApproveId != null">
+				inspection_approve_id =
+				#{inspectionApproveId,jdbcType=VARCHAR},
+			</if>
+			<if test="inspectionApproveStatus != null">
+				inspection_approve_status =
+				#{inspectionApproveStatus,jdbcType=INTEGER},
+			</if>
+			<if test="inspectionApproveResult != null">
+				inspection_approve_result =
+				#{inspectionApproveResult,jdbcType=INTEGER},
+			</if>
+			<if test="stockStatus != null">
+				stock_status = #{stockStatus,jdbcType=INTEGER},
+			</if>
+			<if test="stockPosition != null">
+				stock_position = #{stockPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="stockInOperator != null">
+				stock_in_operator = #{stockInOperator,jdbcType=VARCHAR},
+			</if>
+			<if test="stockInStartTime != null">
+				stock_in_start_time =
+				#{stockInStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="stockInStopTime != null">
+				stock_in_stop_time =
+				#{stockInStopTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="stockInApproveId != null">
+				stock_in_approve_id =
+				#{stockInApproveId,jdbcType=VARCHAR},
+			</if>
+			<if test="stockInApproveStatus != null">
+				stock_in_approve_status =
+				#{stockInApproveStatus,jdbcType=INTEGER},
+			</if>
+			<if test="stockInApproveResult != null">
+				stock_in_approve_result =
+				#{stockInApproveResult,jdbcType=INTEGER},
+			</if>
+			<if test="stockOutOperator != null">
+				stock_out_operator =
+				#{stockOutOperator,jdbcType=VARCHAR},
+			</if>
+			<if test="stockOutStartTime != null">
+				stock_out_start_time =
+				#{stockOutStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="stockOutStopTime != null">
+				stock_out_stop_time =
+				#{stockOutStopTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="stockOutApproveId != null">
+				stock_out_approve_id =
+				#{stockOutApproveId,jdbcType=VARCHAR},
+			</if>
+			<if test="stockOutApproveStatus != null">
+				stock_out_approve_status =
+				#{stockOutApproveStatus,jdbcType=INTEGER},
+			</if>
+			<if test="stockOutApproveResult != null">
+				stock_out_approve_result =
+				#{stockOutApproveResult,jdbcType=INTEGER},
+			</if>
+			<if test="defendOperator != null">
+				defend_operator = #{defendOperator,jdbcType=VARCHAR},
+			</if>
+			<if test="defendStatus != null">
+				defend_status = #{defendStatus,jdbcType=INTEGER},
+			</if>
+			<if test="defendApproveId != null">
+				defend_approve_id = #{defendApproveId,jdbcType=VARCHAR},
+			</if>
+			<if test="defendStartTime != null">
+				defend_start_time =
+				#{defendStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="defendStopTime != null">
+				defend_stop_time = #{defendStopTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="defendApproveStatus != null">
+				defend_approve_status =
+				#{defendApproveStatus,jdbcType=INTEGER},
+			</if>
+			<if test="defendApproveResult != null">
+				defend_approve_result =
+				#{defendApproveResult,jdbcType=INTEGER},
+			</if>
+			<if test="softInstallOperator != null">
+				soft_install_operator =
+				#{softInstallOperator,jdbcType=VARCHAR},
+			</if>
+			<if test="softInstallVersion != null">
+				soft_install_version =
+				#{softInstallVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="softInstallStartTime != null">
+				soft_install_start_time =
+				#{softInstallStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="softInstallStopTime != null">
+				soft_install_stop_time =
+				#{softInstallStopTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="softInstallApproveId != null">
+				soft_install_approve_id =
+				#{softInstallApproveId,jdbcType=VARCHAR},
+			</if>
+			<if test="softInstallApproveStatus != null">
+				soft_install_approve_status =
+				#{softInstallApproveStatus,jdbcType=INTEGER},
+			</if>
+			<if test="softInstallApproveResult != null">
+				soft_install_approve_result =
+				#{softInstallApproveResult,jdbcType=INTEGER},
+			</if>
+			<if test="functionInspectionOperator != null">
+				function_inspection_operator =
+				#{functionInspectionOperator,jdbcType=VARCHAR},
+			</if>
+			<if test="functionInspectionStatus != null">
+				function_inspection_status =
+				#{functionInspectionStatus,jdbcType=INTEGER},
+			</if>
+			<if test="functionInspectionStartTime != null">
+				function_inspection_start_time =
+				#{functionInspectionStartTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="functionInspectionSotpTime != null">
+				function_inspection_sotp_time =
+				#{functionInspectionSotpTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="functionInspectionApproveId != null">
+				function_inspection_approve_id =
+				#{functionInspectionApproveId,jdbcType=VARCHAR},
+			</if>
+			<if test="functionInspectionApproveStatus != null">
+				function_inspection_approve_status =
+				#{functionInspectionApproveStatus,jdbcType=INTEGER},
+			</if>
+			<if test="functionInspectionApproveResult != null">
+				function_inspection_approve_result =
+				#{functionInspectionApproveResult,jdbcType=INTEGER},
+			</if>
+			<if test="used != null">
+				used =
+				#{used,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			update_time = now()
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="checkReInspection" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		select res.id from (
+		select id from t_prduce_parts_process where
+		inspection_approve_result = 0 or
+		inspection_approve_result = 1
+		) as res
+		where res.id in
+		<foreach collection="codes" open="(" separator="," close=")"
+			item="item">
+			#{item}
+		</foreach>
+	</select>
+	<insert id="insertSelectiveBatch" parameterType="list">
+		insert into t_prduce_parts_process (id, parts_id, parts_name,
+		specification, inspection_status, inspection_operator,
+		inspection_start_time,
+		inspection_approve_id,
+		inspection_approve_status,
+		create_time,
+		update_time)
+		values
+		<foreach collection="list" separator="," item="item">
+			(
+			#{item.id,jdbcType=VARCHAR}, #{item.partsId,jdbcType=VARCHAR},
+			#{item.partsName,jdbcType=VARCHAR},
+			#{item.specification,jdbcType=INTEGER},
+			#{item.inspectionStatus,jdbcType=INTEGER},
+			#{item.inspectionOperator,jdbcType=VARCHAR},
+			#{item.inspectionStartTime,jdbcType=TIMESTAMP},
+			#{item.inspectionApproveId,jdbcType=VARCHAR},
+			#{item.inspectionApproveStatus,jdbcType=INTEGER},
+			now(),now()
+			)
+		</foreach>
+	</insert>
+	<select id="selectByInspectionApproveId" parameterType="string"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_prduce_parts_process
+		where inspection_approve_id =
+		#{inspectionApproveId,jdbcType=VARCHAR}
+	</select>
+	<select id="getProducePartsWaittingStockInList" resultType="map">
+		select id,parts_name as name,specification
+		from t_prduce_parts_process
+		where inspection_approve_result = 1 and (stock_status is null or
+		stock_status = 2)
+	</select>
+	<select id="goodsStockInCheck" parameterType="string"
+		resultType="string">
+		select res.id from (
+		select id from t_prduce_parts_process where
+		stock_in_approve_result = 0 or
+		stock_in_approve_result = 1
+		) as res
+		where res.id in
+		<foreach collection="codes" open="(" separator="," close=")"
+			item="item">
+			#{item}
+		</foreach>
+	</select>
+	<select id="selectByIdBatch" parameterType="list"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_prduce_parts_process
+		where id in
+		<foreach collection="ids" open="(" separator="," close=")"
+			item="item">
+			#{item}
+		</foreach>
+	</select>
+	<select id="queryProducePartsStockInList"
+		resultType="java.util.Map">
+		select id,parts_name as name,specification
+		from
+		t_prduce_parts_process
+		where
+		stock_status = 0
+	</select>
+	<select id="goodsStockOutCheck" parameterType="string"
+		resultType="string">
+		select res.id from (
+		select id from t_prduce_parts_process where
+		stock_out_approve_result = 0 or
+		stock_out_approve_result = 1
+		) as res
+		where res.id in
+		<foreach collection="codes" open="(" separator="," close=")"
+			item="item">
+			#{item}
+		</foreach>
+	</select>
+	<select id="partsDefendCheck" parameterType="string"
+		resultType="string">
+		select res.id from (
+		select id from t_prduce_parts_process where
+		defend_approve_result = 0 or
+		defend_approve_result = 1
+		) as res
+		where
+		res.id in
+		<foreach collection="codes" open="(" separator="," close=")"
+			item="item">
+			#{item}
+		</foreach>
+	</select>
+	<select id="queryStockOutWaittingDefendPartsList"
+		resultType="java.util.Map">
+		select id,parts_name as name,specification
+		from
+		t_prduce_parts_process
+		where
+		stock_status = 1 and defend_status is null
+	</select>
+	<select id="partsSoftInstallCheck" parameterType="string"
+		resultType="string">
+		select res.id from (
+		select id from t_prduce_parts_process where
+		soft_install_approve_result = 0 or
+		soft_install_approve_result = 1
+		) as
+		res
+		where res.id in
+		<foreach collection="codes" open="(" separator="," close=")"
+			item="item">
+			#{item}
+		</foreach>
+	</select>
+	<select id="queryStockOutWaittingSoftInstallPartsList"
+		resultType="java.util.Map">
+		select id,parts_name as name,specification
+		from
+		t_prduce_parts_process
+		where
+		stock_status = 1 and
+		soft_install_approve_id is null
+	</select>
+	<select id="queryStockOutWaittingFunctionInspcetionPartsList"
+		resultType="java.util.Map">
+		select id,parts_name as name,specification
+		from
+		t_prduce_parts_process
+		where
+		stock_status = 1 and
+		function_inspection_approve_id is null
+	</select>
+	<select id="functionInspectionCheck" parameterType="string"
+		resultType="string">
+		select res.id from (
+		select id from t_prduce_parts_process where
+		function_inspection_approve_result = 0 or
+		function_inspection_approve_result = 1
+		) as res
+		where res.id in
+		<foreach collection="codes" open="(" separator="," close=")"
+			item="item">
+			#{item}
+		</foreach>
+	</select>
+	<select id="queryStockOutUnUsedPartsList"
+		resultType="java.util.Map">
+		select id,parts_name as name,specification
+		from
+		t_prduce_parts_process
+		where
+		stock_status = 1 and used is null
+	</select>
+	<insert id="insertSelectiveBatchImport" parameterType="list">
+		insert into t_prduce_parts_process (id, parts_id, parts_name,
+		specification, inspection_status, inspection_operator,
+		inspection_start_time,
+		inspection_approve_id,
+		inspection_approve_status,
+		inspection_approve_result,
+		inspection_stop_time,
+		create_time,
+		update_time)
+		values
+		<foreach collection="list" separator="," item="item">
+			(
+			#{item.id,jdbcType=VARCHAR}, #{item.partsId,jdbcType=VARCHAR},
+			#{item.partsName,jdbcType=VARCHAR},
+			#{item.specification,jdbcType=INTEGER},
+			#{item.inspectionStatus,jdbcType=INTEGER},
+			#{item.inspectionOperator,jdbcType=VARCHAR},
+			#{item.inspectionStartTime,jdbcType=TIMESTAMP},
+			#{item.inspectionApproveId,jdbcType=VARCHAR},
+			#{item.inspectionApproveStatus,jdbcType=INTEGER},
+			#{item.inspectionApproveResult,jdbcType=INTEGER},
+			#{item.inspectionStopTime,jdbcType=TIMESTAMP},
+			#{item.createTime},#{item.updateTime}
+			)
+		</foreach>
+	</insert>
+	<select id="getPartsStock" resultType="map">
+		SELECT
+		parts_name as name,
+		sum( specification ) as number
+		FROM
+		t_prduce_parts_process
+		WHERE
+		stock_status = 0
+		GROUP BY
+		parts_name
+		order by number
+	</select>
+	<select id="getCountGroupByPartsId" resultType="int">
+		SELECT
+		count( a.parts_name )
+		FROM
+		( SELECT count( parts_id ), parts_name FROM t_prduce_parts_process
+		WHERE stock_status = 0 GROUP BY parts_name ) AS a
+	</select>
+	<select id="queryProducePartsStockInNumber" resultType="int">
+		select sum(specification) from t_prduce_parts_process where stock_status = 0
+	</select>
+</mapper>

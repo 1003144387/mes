@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crsri.mes.dao.ProducePartsMapper">
+	<resultMap id="BaseResultMap"
+		type="com.crsri.mes.entity.ProduceParts">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="model" property="model" jdbcType="VARCHAR" />
+		<result column="provider_name" property="providerName"
+			jdbcType="VARCHAR" />
+		<result column="provider_phone" property="providerPhone"
+			jdbcType="VARCHAR" />
+		<result column="image" property="image" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="operator" property="operator"
+			jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime"
+			jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, model, provider_name, provider_phone, image, price, remark,
+		operator, create_time,
+		update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_produce_parts
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from t_produce_parts
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.crsri.mes.entity.ProduceParts">
+		insert into t_produce_parts (id, name, model,
+		provider_name, provider_phone, image,
+		price, remark, operator,
+		create_time, update_time)
+		values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{model,jdbcType=VARCHAR},
+		#{providerName,jdbcType=VARCHAR}, #{providerPhone,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},
+		#{price,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR},
+		#{operator,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.crsri.mes.entity.ProduceParts">
+		insert into t_produce_parts
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="model != null">
+				model,
+			</if>
+			<if test="providerName != null">
+				provider_name,
+			</if>
+			<if test="providerPhone != null">
+				provider_phone,
+			</if>
+			<if test="image != null">
+				image,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="operator != null">
+				operator,
+			</if>
+				create_time,
+				update_time
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="model != null">
+				#{model,jdbcType=VARCHAR},
+			</if>
+			<if test="providerName != null">
+				#{providerName,jdbcType=VARCHAR},
+			</if>
+			<if test="providerPhone != null">
+				#{providerPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				#{image,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				#{operator,jdbcType=VARCHAR},
+			</if>
+			now(),now()
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.crsri.mes.entity.ProduceParts">
+		update t_produce_parts
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="model != null">
+				model = #{model,jdbcType=VARCHAR},
+			</if>
+			<if test="providerName != null">
+				provider_name = #{providerName,jdbcType=VARCHAR},
+			</if>
+			<if test="providerPhone != null">
+				provider_phone = #{providerPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				image = #{image,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				operator = #{operator,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+				update_time = now()
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.crsri.mes.entity.ProduceParts">
+		update t_produce_parts
+		set name = #{name,jdbcType=VARCHAR},
+		model = #{model,jdbcType=VARCHAR},
+		provider_name = #{providerName,jdbcType=VARCHAR},
+		provider_phone = #{providerPhone,jdbcType=VARCHAR},
+		image = #{image,jdbcType=VARCHAR},
+		price = #{price,jdbcType=DECIMAL},
+		remark = #{remark,jdbcType=VARCHAR},
+		operator = #{operator,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_time = #{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectProducePartsListSimple"
+		resultType="java.util.Map">
+		select id,name from
+		t_produce_parts
+	</select>
+	<select id="queryAll"
+		parameterType="map"
+		resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/>
+		from 
+		t_produce_parts
+		<where>
+			<if test="id!=null">
+				and id like concat(concat("%",#{id}),"%")
+			</if>
+			<if test="name!=null">
+				and name like concat(concat("%",#{name}),"%")
+			</if>
+			<if test="operator!=null">
+				and operator like concat(concat("%",#{operator}),"%")
+			</if>
+		</where>
+		order by create_time desc
+	</select>
+	<select id="queryByName" parameterType="string"
+		resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/>
+		from 
+		t_produce_parts
+		where name = #{name}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

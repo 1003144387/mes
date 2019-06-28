@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.crsri.mes.dao.ProduceProductChildInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.crsri.mes.entity.ProduceProductChildInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="product_id" property="productId"
+			jdbcType="VARCHAR" />
+		<result column="child_id" property="childId" jdbcType="VARCHAR" />
+		<result column="child_name" property="childName"
+			jdbcType="VARCHAR" />
+		<result column="child_count" property="childCount"
+			jdbcType="INTEGER" />
+		<result column="child_type" property="childType"
+			jdbcType="INTEGER" />
+		<result column="create_time" property="createTime"
+			jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, product_id, child_id, child_name, child_count,
+		child_type,
+		create_time, update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_produce_product_child
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from t_produce_product_child
+		where id =
+		#{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByChildId" parameterType="string">
+		delete from
+		t_produce_product_child
+		where child_id = #{childId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByProductId" parameterType="string">
+		delete from
+		t_produce_product_child
+		where product_id =
+		#{productId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.crsri.mes.entity.ProduceProductChildInfo">
+		insert into t_produce_product_child (id, product_id,
+		child_id,
+		child_name, child_count, child_type,
+		create_time, update_time)
+		values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=VARCHAR},
+		#{childId,jdbcType=VARCHAR},
+		#{childName,jdbcType=VARCHAR},
+		#{childCount,jdbcType=INTEGER}, #{childType,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.crsri.mes.entity.ProduceProductChildInfo">
+		insert into t_produce_product_child
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="productId != null">
+				product_id,
+			</if>
+			<if test="childId != null">
+				child_id,
+			</if>
+			<if test="childName != null">
+				child_name,
+			</if>
+			<if test="childCount != null">
+				child_count,
+			</if>
+			<if test="childType != null">
+				child_type,
+			</if>
+			create_time,
+			update_time
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="productId != null">
+				#{productId,jdbcType=VARCHAR},
+			</if>
+			<if test="childId != null">
+				#{childId,jdbcType=VARCHAR},
+			</if>
+			<if test="childName != null">
+				#{childName,jdbcType=VARCHAR},
+			</if>
+			<if test="childCount != null">
+				#{childCount,jdbcType=INTEGER},
+			</if>
+			<if test="childType != null">
+				#{childType,jdbcType=INTEGER},
+			</if>
+			now(),now()
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.crsri.mes.entity.ProduceProductChildInfo">
+		update t_produce_product_child
+		<set>
+			<if test="productId != null">
+				product_id = #{productId,jdbcType=VARCHAR},
+			</if>
+			<if test="childId != null">
+				child_id = #{childId,jdbcType=VARCHAR},
+			</if>
+			<if test="childName != null">
+				child_name = #{childName,jdbcType=VARCHAR},
+			</if>
+			<if test="childCount != null">
+				child_count = #{childCount,jdbcType=INTEGER},
+			</if>
+			<if test="childType != null">
+				child_type = #{childType,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			update_time =now()
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.crsri.mes.entity.ProduceProductChildInfo">
+		update t_produce_product_child
+		set product_id =
+		#{productId,jdbcType=VARCHAR},
+		child_id = #{childId,jdbcType=VARCHAR},
+		child_name = #{childName,jdbcType=VARCHAR},
+		child_count =
+		#{childCount,jdbcType=INTEGER},
+		child_type =
+		#{childType,jdbcType=INTEGER},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="queryByProductId" parameterType="map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_produce_product_child
+		where product_id =#{productId} and child_type =#{childType}
+	</select>
+</mapper>

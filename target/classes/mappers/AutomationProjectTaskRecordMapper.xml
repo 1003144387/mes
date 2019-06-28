@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crsri.mes.dao.AutomationProjectTaskRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.crsri.mes.entity.AutomationProjectTaskRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="task_id" property="taskId" jdbcType="VARCHAR" />
+    <result column="record_title" property="recordTitle" jdbcType="VARCHAR" />
+    <result column="record_abstract" property="recordAbstract" jdbcType="VARCHAR" />
+    <result column="record_content" property="recordContent" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, task_id, record_title, record_abstract, record_content, operator, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_automation_project_task_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_automation_project_task_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.crsri.mes.entity.AutomationProjectTaskRecord" >
+    insert into t_automation_project_task_record (id, task_id, record_title, 
+      record_abstract, record_content, operator, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{taskId,jdbcType=VARCHAR}, #{recordTitle,jdbcType=VARCHAR}, 
+      #{recordAbstract,jdbcType=VARCHAR}, #{recordContent,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.crsri.mes.entity.AutomationProjectTaskRecord" >
+    insert into t_automation_project_task_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="recordTitle != null" >
+        record_title,
+      </if>
+      <if test="recordAbstract != null" >
+        record_abstract,
+      </if>
+      <if test="recordContent != null" >
+        record_content,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+        create_time,
+        update_time
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="taskId != null" >
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTitle != null" >
+        #{recordTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="recordAbstract != null" >
+        #{recordAbstract,jdbcType=VARCHAR},
+      </if>
+      <if test="recordContent != null" >
+        #{recordContent,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      now(),now()
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.crsri.mes.entity.AutomationProjectTaskRecord" >
+    update t_automation_project_task_record
+    <set >
+      <if test="taskId != null" >
+        task_id = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTitle != null" >
+        record_title = #{recordTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="recordAbstract != null" >
+        record_abstract = #{recordAbstract,jdbcType=VARCHAR},
+      </if>
+      <if test="recordContent != null" >
+        record_content = #{recordContent,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+        update_time =now()
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.crsri.mes.entity.AutomationProjectTaskRecord" >
+    update t_automation_project_task_record
+    set task_id = #{taskId,jdbcType=VARCHAR},
+      record_title = #{recordTitle,jdbcType=VARCHAR},
+      record_abstract = #{recordAbstract,jdbcType=VARCHAR},
+      record_content = #{recordContent,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectByTaskId" parameterType="string" resultMap="BaseResultMap">
+        select
+        id, task_id, record_title, record_abstract,  operator, create_time, update_time
+        from t_automation_project_task_record
+        where task_id = #{taskId}
+    </select>
+</mapper>

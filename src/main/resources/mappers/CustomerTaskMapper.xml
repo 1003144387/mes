@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crsri.mes.dao.CustomerTaskMapper">
+	<resultMap id="BaseResultMap"
+		type="com.crsri.mes.entity.CustomerTask">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="customer_company" property="customerCompany"
+			jdbcType="VARCHAR" />
+		<result column="project_name" property="projectName"
+			jdbcType="VARCHAR" />
+		<result column="contact" property="contact" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="customer_operator" property="customerOperator"
+			jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime"
+			jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, customer_company, project_name, contact, phone,
+		customer_operator,
+		status, create_time,
+		update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_customer_task
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		t_customer_task
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.crsri.mes.entity.CustomerTask">
+		insert into t_customer_task (id, customer_company,
+		project_name,
+		contact, phone, customer_operator,
+		status, create_time,
+		update_time
+		)
+		values (#{id,jdbcType=VARCHAR},
+		#{customerCompany,jdbcType=VARCHAR},
+		#{projectName,jdbcType=VARCHAR},
+		#{contact,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{customerOperator,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.crsri.mes.entity.CustomerTask">
+		insert into t_customer_task
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="customerCompany != null">
+				customer_company,
+			</if>
+			<if test="projectName != null">
+				project_name,
+			</if>
+			<if test="contact != null">
+				contact,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="customerOperator != null">
+				customer_operator,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			create_time,
+			update_time
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="customerCompany != null">
+				#{customerCompany,jdbcType=VARCHAR},
+			</if>
+			<if test="projectName != null">
+				#{projectName,jdbcType=VARCHAR},
+			</if>
+			<if test="contact != null">
+				#{contact,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="customerOperator != null">
+				#{customerOperator,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			now(),now()
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.crsri.mes.entity.CustomerTask">
+		update t_customer_task
+		<set>
+			<if test="customerCompany != null">
+				customer_company = #{customerCompany,jdbcType=VARCHAR},
+			</if>
+			<if test="projectName != null">
+				project_name = #{projectName,jdbcType=VARCHAR},
+			</if>
+			<if test="contact != null">
+				contact = #{contact,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="customerOperator != null">
+				customer_operator = #{customerOperator,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			update_time = now()
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.crsri.mes.entity.CustomerTask">
+		update t_customer_task
+		set customer_company =
+		#{customerCompany,jdbcType=VARCHAR},
+		project_name =
+		#{projectName,jdbcType=VARCHAR},
+		contact = #{contact,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		customer_operator =
+		#{customerOperator,jdbcType=VARCHAR},
+		status =
+		#{status,jdbcType=INTEGER},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="getCustomerTaskList" parameterType="map"
+		resultMap="BaseResultMap">
+		select
+		id, customer_company, project_name, contact, phone,
+		customer_operator,
+		status, create_time,
+		update_time
+		from
+		t_customer_task
+		<where>
+			<if test="customerCompany != null">
+				and customer_company like
+				concat(concat("%",#{customerCompany,jdbcType=VARCHAR}),"%")
+			</if>
+			<if test="customerProjectName != null">
+				and project_name like
+				concat(concat("%",#{customerProjectName,jdbcType=VARCHAR}),"%")
+			</if>
+			<if test="customerTaskStatus != null">
+				and status =#{customerTaskStatus,jdbcType=INTEGER}
+			</if>
+			<if test="customerOperator != null">
+				and customer_operator like
+				concat(concat("%",#{customerOperator,jdbcType=VARCHAR}),"%")
+			</if>
+			<if test="startTime != null">
+				and create_time &gt;=#{startTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="stopTime != null">
+				and create_time &lt;=#{stopTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		order by status asc , update_time desc
+	</select>
+	<select id="getCustomerTaskCount" parameterType="map"
+		resultType="integer">
+		select count(id)
+		from t_customer_task
+		<where>
+			<if test="customerCompany != null">
+				and customer_company like
+				concat(concat("%",#{customerCompany,jdbcType=VARCHAR}),"%")
+			</if>
+			<if test="customerProjectName != null">
+				and project_name like
+				concat(concat("%",#{customerProjectName,jdbcType=VARCHAR}),"%")
+			</if>
+			<if test="customerTaskStatus != null">
+				and status =#{customerTaskStatus,jdbcType=INTEGER}
+			</if>
+			<if test="customerOperator != null">
+				and customer_operator like
+				concat(concat("%",#{customerOperator,jdbcType=VARCHAR}),"%")
+			</if>
+			<if test="startTime != null">
+				and create_time &gt;=#{startTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="stopTime != null">
+				and create_time &lt;=#{stopTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,5 @@
+com\crsri\mes\service\impl\ReportServiceImplTest.class
+com\crsri\mes\util\export\ImportUtilTest.class
+com\crsri\mes\service\impl\PermissionServiceImplTest.class
+com\crsri\mes\service\impl\ProduceComponentInfoServiceImplTest.class
+com\crsri\mes\MesApplicationTests.class

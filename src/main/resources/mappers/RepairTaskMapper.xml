@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crsri.mes.dao.RepairTaskMapper">
+	<resultMap id="BaseResultMap"
+		type="com.crsri.mes.entity.RepairTask">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="project_name" property="projectName"
+			jdbcType="VARCHAR" />
+		<result column="device_category" property="deviceCategory"
+			jdbcType="VARCHAR" />
+		<result column="device_id" property="deviceId"
+			jdbcType="VARCHAR" />
+		<result column="contact" property="contact" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="trouble_desc" property="troubleDesc"
+			jdbcType="VARCHAR" />
+		<result column="image" property="image" jdbcType="VARCHAR" />
+		<result column="repair_operator" property="repairOperator" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime"
+			jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, project_name, device_category, device_id, contact, phone,
+		trouble_desc, image,repair_operator,
+		status, create_time, update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_repair_task
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from t_repair_task
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.crsri.mes.entity.RepairTask">
+		insert into t_repair_task (id, project_name, device_category,
+		device_id, contact, phone,
+		trouble_desc, image, repair_operator,status,
+		create_time, update_time)
+		values (#{id,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR},
+		#{deviceCategory,jdbcType=VARCHAR},
+		#{deviceId,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{troubleDesc,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR},#{repairOperator,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.crsri.mes.entity.RepairTask">
+		insert into t_repair_task
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="projectName != null">
+				project_name,
+			</if>
+			<if test="deviceCategory != null">
+				device_category,
+			</if>
+			<if test="deviceId != null">
+				device_id,
+			</if>
+			<if test="contact != null">
+				contact,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="troubleDesc != null">
+				trouble_desc,
+			</if>
+			<if test="image != null">
+				image,
+			</if>
+			<if test="repairOperator != null">
+				repair_operator,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			create_time,
+			update_time
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="projectName != null">
+				#{projectName,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceCategory != null">
+				#{deviceCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceId != null">
+				#{deviceId,jdbcType=VARCHAR},
+			</if>
+			<if test="contact != null">
+				#{contact,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="troubleDesc != null">
+				#{troubleDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				#{image,jdbcType=VARCHAR},
+			</if>
+			<if test="repairOperator != null">
+				#{repairOperator,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			now(),now()
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.crsri.mes.entity.RepairTask">
+		update t_repair_task
+		<set>
+			<if test="projectName != null">
+				project_name = #{projectName,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceCategory != null">
+				device_category = #{deviceCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceId != null">
+				device_id = #{deviceId,jdbcType=VARCHAR},
+			</if>
+			<if test="contact != null">
+				contact = #{contact,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="troubleDesc != null">
+				trouble_desc = #{troubleDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				image = #{image,jdbcType=VARCHAR},
+			</if>
+			<if test="repairOperator != null">
+				repair_operator = #{repairOperator,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.crsri.mes.entity.RepairTask">
+		update t_repair_task
+		set project_name = #{projectName,jdbcType=VARCHAR},
+		device_category = #{deviceCategory,jdbcType=VARCHAR},
+		device_id = #{deviceId,jdbcType=VARCHAR},
+		contact = #{contact,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		trouble_desc = #{troubleDesc,jdbcType=VARCHAR},
+		image = #{image,jdbcType=VARCHAR},
+		repairOperator = #{repairOperator,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_time = #{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="queryRepairTaskCountByStatus" resultType="integer"
+		parameterType="map">
+		select
+		count(id)
+		from t_repair_task
+		<where>
+			<if test="deviceId != null">
+				and device_id like concat(concat("%",#{deviceId}),"%")
+			</if>
+			<if test="deviceCategory!=null">
+				and device_category like concat(concat("%",#{deviceCategory}),"%")
+			</if>
+			<if test="projectName != null">
+				and project_name like concat(concat("%",#{projectName}),"%")
+			</if>
+			<if test="status !=null">
+				and status =#{status}
+			</if>
+			<if test="startTime !=null">
+				and update_time &gt;=#{startTime}
+			</if>
+			<if test="stopTime">
+				and update_time &lt;= #{stopTime}
+			</if>
+		</where>
+	</select>
+	<select id="queryRepairTaskList" parameterType="map" resultMap="BaseResultMap">
+        select
+       	<include refid="Base_Column_List"/>
+        from t_repair_task 
+        <where>
+            <if test="projectName !=null">
+                and project_name like concat(concat("%",#{projectName}),"%")
+            </if>
+            <if test="deviceCategory !=null">
+                and device_category like concat(concat("%",#{deviceCategory}),"%")
+            </if>
+            <if test="deviceId !=null">
+                and device_id like concat(concat("%",#{deviceId}),"%")
+            </if>
+            <if test="repairTaskStatus !=null">
+                and status =#{repairTaskStatus}
+            </if>
+            <if test="startTime !=null">
+                and create_time &gt;=#{startTime}
+            </if>
+            <if test="stopTime !=null">
+                and create_time &lt;=#{stopTime}
+            </if>
+        </where>
+        order by status asc , update_time desc
+    </select>
+</mapper>

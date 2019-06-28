@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crsri.mes.dao.PermissionMapper">
+	<resultMap id="BaseResultMap"
+		type="com.crsri.mes.entity.Permission">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="permission_name" property="permissionName"
+			jdbcType="VARCHAR" />
+		<result column="permission_desc" property="permissionDesc"
+			jdbcType="VARCHAR" />
+		<result column="permission_parent_id"
+			property="permissionParentId" jdbcType="INTEGER" />
+		<result column="permission_url" property="permissionUrl"
+			jdbcType="VARCHAR" />
+		<result column="permission_icon" property="permissionIcon"
+			jdbcType="VARCHAR" />
+		<result column="permission_order" property="permissionOrder"
+			jdbcType="INTEGER" />
+		<result column="permission_type" property="permissionType"
+			jdbcType="INTEGER" />
+		<result column="create_time" property="createTime"
+			jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="PermissionVOResultMap"
+		type="com.crsri.mes.vo.PermissionVO">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="permission_name" property="permissionName"
+			jdbcType="VARCHAR" />
+		<result column="permission_desc" property="permissionDesc"
+			jdbcType="VARCHAR" />
+		<result column="permission_parent_id"
+			property="permissionParentId" jdbcType="INTEGER" />
+		<result column="permission_url" property="permissionUrl"
+			jdbcType="VARCHAR" />
+		<result column="permission_icon" property="permissionIcon"
+			jdbcType="VARCHAR" />
+		<result column="permission_order" property="permissionOrder"
+			jdbcType="INTEGER" />
+		<result column="permission_type" property="permissionType"
+			jdbcType="INTEGER" />
+		<result column="create_time" property="createTime"
+			jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, permission_name, permission_desc, permission_parent_id,
+		permission_url, permission_icon,
+		permission_order, permission_type,
+		create_time, update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_permission
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from t_permission
+		where id =
+		#{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.crsri.mes.entity.Permission">
+		insert into t_permission (id, permission_name,
+		permission_desc,
+		permission_parent_id, permission_url, permission_icon,
+		permission_order, permission_type, create_time,
+		update_time)
+		values
+		(#{id,jdbcType=INTEGER}, #{permissionName,jdbcType=VARCHAR},
+		#{permissionDesc,jdbcType=VARCHAR},
+		#{permissionParentId,jdbcType=INTEGER},
+		#{permissionUrl,jdbcType=VARCHAR}, #{permissionIcon,jdbcType=VARCHAR},
+		#{permissionOrder,jdbcType=INTEGER},
+		#{permissionType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.crsri.mes.entity.Permission">
+		insert into t_permission
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="permissionName != null">
+				permission_name,
+			</if>
+			<if test="permissionDesc != null">
+				permission_desc,
+			</if>
+			<if test="permissionParentId != null">
+				permission_parent_id,
+			</if>
+			<if test="permissionUrl != null">
+				permission_url,
+			</if>
+			<if test="permissionIcon != null">
+				permission_icon,
+			</if>
+			<if test="permissionOrder != null">
+				permission_order,
+			</if>
+			<if test="permissionType != null">
+				permission_type,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="permissionName != null">
+				#{permissionName,jdbcType=VARCHAR},
+			</if>
+			<if test="permissionDesc != null">
+				#{permissionDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="permissionParentId != null">
+				#{permissionParentId,jdbcType=INTEGER},
+			</if>
+			<if test="permissionUrl != null">
+				#{permissionUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="permissionIcon != null">
+				#{permissionIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="permissionOrder != null">
+				#{permissionOrder,jdbcType=INTEGER},
+			</if>
+			<if test="permissionType != null">
+				#{permissionType,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.crsri.mes.entity.Permission">
+		update t_permission
+		<set>
+			<if test="permissionName != null">
+				permission_name = #{permissionName,jdbcType=VARCHAR},
+			</if>
+			<if test="permissionDesc != null">
+				permission_desc = #{permissionDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="permissionParentId != null">
+				permission_parent_id =
+				#{permissionParentId,jdbcType=INTEGER},
+			</if>
+			<if test="permissionUrl != null">
+				permission_url = #{permissionUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="permissionIcon != null">
+				permission_icon = #{permissionIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="permissionOrder != null">
+				permission_order = #{permissionOrder,jdbcType=INTEGER},
+			</if>
+			<if test="permissionType != null">
+				permission_type = #{permissionType,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.crsri.mes.entity.Permission">
+		update t_permission
+		set permission_name =
+		#{permissionName,jdbcType=VARCHAR},
+		permission_desc =
+		#{permissionDesc,jdbcType=VARCHAR},
+		permission_parent_id =
+		#{permissionParentId,jdbcType=INTEGER},
+		permission_url =
+		#{permissionUrl,jdbcType=VARCHAR},
+		permission_icon =
+		#{permissionIcon,jdbcType=VARCHAR},
+		permission_order =
+		#{permissionOrder,jdbcType=INTEGER},
+		permission_type =
+		#{permissionType,jdbcType=INTEGER},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectPermissionsByRoleIds"
+		parameterType="java.util.Set" resultType="String">
+		select permission_name
+		from t_permission
+		where id in
+		(
+		select
+		permission_id from t_role_permission where role_id in
+		<foreach collection="roleIds" open="(" close=")" separator=","
+			item="item">
+			#{item}
+		</foreach>
+		)
+	</select>
+	<select id="queryMenuByRoleIds" parameterType="java.util.Set"
+		resultType="int">
+		select distinct id
+		from t_permission
+		where id in
+		(
+		select
+		permission_id
+		from t_role_permission where  role_id
+		in
+		<foreach collection="roleIds" open="(" close=")" separator=","
+			item="item">
+			#{item}
+		</foreach>
+		)
+	</select>
+	<select id="queryIds" resultMap="BaseResultMap"
+		parameterType="java.util.List">
+		select
+		<include refid="Base_Column_List" />
+		from t_permission
+		where permission_parent_id = 0 and
+		permission_type = 0 and 
+		id in
+		<foreach collection="ids" open="(" close=")" separator=","
+			item="item">
+			#{item}
+		</foreach>
+	</select>
+	<select id="queryMenuByParentId"
+		parameterType="java.util.List" resultMap="MenuVOResultMap">
+		select
+		permission_desc ,
+		permission_icon ,
+		permission_url 
+		from t_permission
+		where permission_parent_id = #{parentId} and id in
+		<foreach collection="ids" open="(" close=")" separator=","
+			item="item">
+			#{item}
+		</foreach>
+		order by permission_order
+	</select>
+	<resultMap type="com.crsri.mes.vo.MenuVO" id="MenuVOResultMap">
+		<result column="permission_desc" property="title"
+			jdbcType="VARCHAR" />
+		<result column="permission_icon" property="iconType"
+			jdbcType="VARCHAR" />
+		<result column="permission_url" property="key"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="queryRootPermission" resultMap="PermissionVOResultMap">
+		select <include refid="Base_Column_List"/>
+		from t_permission
+		where permission_parent_id = 0
+		order by permission_order
+	</select>
+	<select id="queryPermissionByParentId" resultMap="PermissionVOResultMap">
+		select <include refid="Base_Column_List"/>
+		from t_permission
+		where permission_parent_id = #{parentId}
+		order by permission_order
+	</select>
+	<select id="selectPermissionVOByPrimaryKey" resultMap="PermissionVOResultMap">
+		select <include refid="Base_Column_List"/>
+		from t_permission
+		where id = #{id}
+	</select>
+	<select id="selectPagePermissionVOByPrimaryKey" resultMap="PermissionVOResultMap">
+		select <include refid="Base_Column_List"/>
+		from t_permission
+		where id = #{id}
+		and permission_type = 0
+	</select>
+	<select id="queryPagePermissionByParentId" resultMap="PermissionVOResultMap">
+		select <include refid="Base_Column_List"/>
+		from t_permission
+		where permission_parent_id = #{parentId}
+		order by permission_order
+	</select>
+	<select id="queryByName" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"/>
+		from t_permission
+		where 
+		permission_name = #{permissionName,jdbcType=VARCHAR}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

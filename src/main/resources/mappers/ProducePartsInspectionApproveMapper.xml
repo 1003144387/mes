@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.crsri.mes.dao.ProducePartsInspectionApproveMapper">
+	<resultMap id="BaseResultMap"
+		type="com.crsri.mes.entity.ProducePartsInspectionApprove">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="parts_id" property="partsId" jdbcType="VARCHAR" />
+		<result column="parts_name" property="partsName"
+			jdbcType="VARCHAR" />
+		<result column="parts_codes" property="partsCodes"
+			jdbcType="VARCHAR" />
+		<result column="operator" property="operator"
+			jdbcType="VARCHAR" />
+		<result column="parts_status" property="partsStatus"
+			jdbcType="INTEGER" />
+		<result column="specification" property="specification"
+			jdbcType="INTEGER" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="image" property="image" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="approve_status" property="approveStatus"
+			jdbcType="INTEGER" />
+		<result column="approve_result" property="approveResult"
+			jdbcType="INTEGER" />
+		<result column="create_time" property="createTime"
+			jdbcType="TIMESTAMP" />
+		<result column="update_time" property="updateTime"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, parts_id, parts_name, parts_codes, operator,
+		parts_status,
+		specification, number,
+		image, remark, approve_status,
+		approve_result, create_time, update_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_produce_parts_inspection_approve
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		t_produce_parts_inspection_approve
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.crsri.mes.entity.ProducePartsInspectionApprove">
+		insert into t_produce_parts_inspection_approve (id,
+		parts_id, parts_name,
+		parts_codes, operator, parts_status,
+		specification, number, image,
+		remark, approve_status, approve_result,
+		create_time, update_time)
+		values (#{id,jdbcType=VARCHAR},
+		#{partsId,jdbcType=VARCHAR},
+		#{partsName,jdbcType=VARCHAR},
+		#{partsCodes,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR},
+		#{partsStatus,jdbcType=INTEGER},
+		#{specification,jdbcType=INTEGER},
+		#{number,jdbcType=INTEGER},
+		#{image,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR}, #{approveStatus,jdbcType=INTEGER},
+		#{approveResult,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.crsri.mes.entity.ProducePartsInspectionApprove">
+		insert into t_produce_parts_inspection_approve
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="partsId != null">
+				parts_id,
+			</if>
+			<if test="partsName != null">
+				parts_name,
+			</if>
+			<if test="partsCodes != null">
+				parts_codes,
+			</if>
+			<if test="operator != null">
+				operator,
+			</if>
+			<if test="partsStatus != null">
+				parts_status,
+			</if>
+			<if test="specification != null">
+				specification,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="image != null">
+				image,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="approveStatus != null">
+				approve_status,
+			</if>
+			<if test="approveResult != null">
+				approve_result,
+			</if>
+			create_time,
+			update_time
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="partsId != null">
+				#{partsId,jdbcType=VARCHAR},
+			</if>
+			<if test="partsName != null">
+				#{partsName,jdbcType=VARCHAR},
+			</if>
+			<if test="partsCodes != null">
+				#{partsCodes,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				#{operator,jdbcType=VARCHAR},
+			</if>
+			<if test="partsStatus != null">
+				#{partsStatus,jdbcType=INTEGER},
+			</if>
+			<if test="specification != null">
+				#{specification,jdbcType=INTEGER},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=INTEGER},
+			</if>
+			<if test="image != null">
+				#{image,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="approveStatus != null">
+				#{approveStatus,jdbcType=INTEGER},
+			</if>
+			<if test="approveResult != null">
+				#{approveResult,jdbcType=INTEGER},
+			</if>
+			now(),now()
+		</trim>
+	</insert>
+	<insert id="insertSelectiveBackUp"
+		parameterType="com.crsri.mes.entity.ProducePartsInspectionApprove">
+		insert into t_produce_parts_inspection_approve
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="partsId != null">
+				parts_id,
+			</if>
+			<if test="partsName != null">
+				parts_name,
+			</if>
+			<if test="partsCodes != null">
+				parts_codes,
+			</if>
+			<if test="operator != null">
+				operator,
+			</if>
+			<if test="partsStatus != null">
+				parts_status,
+			</if>
+			<if test="specification != null">
+				specification,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="image != null">
+				image,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="approveStatus != null">
+				approve_status,
+			</if>
+			<if test="approveResult != null">
+				approve_result,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="partsId != null">
+				#{partsId,jdbcType=VARCHAR},
+			</if>
+			<if test="partsName != null">
+				#{partsName,jdbcType=VARCHAR},
+			</if>
+			<if test="partsCodes != null">
+				#{partsCodes,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				#{operator,jdbcType=VARCHAR},
+			</if>
+			<if test="partsStatus != null">
+				#{partsStatus,jdbcType=INTEGER},
+			</if>
+			<if test="specification != null">
+				#{specification,jdbcType=INTEGER},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=INTEGER},
+			</if>
+			<if test="image != null">
+				#{image,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="approveStatus != null">
+				#{approveStatus,jdbcType=INTEGER},
+			</if>
+			<if test="approveResult != null">
+				#{approveResult,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=INTEGER},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.crsri.mes.entity.ProducePartsInspectionApprove">
+		update t_produce_parts_inspection_approve
+		<set>
+			<if test="partsId != null">
+				parts_id = #{partsId,jdbcType=VARCHAR},
+			</if>
+			<if test="partsName != null">
+				parts_name = #{partsName,jdbcType=VARCHAR},
+			</if>
+			<if test="partsCodes != null">
+				parts_codes = #{partsCodes,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				operator = #{operator,jdbcType=VARCHAR},
+			</if>
+			<if test="partsStatus != null">
+				parts_status = #{partsStatus,jdbcType=INTEGER},
+			</if>
+			<if test="specification != null">
+				specification = #{specification,jdbcType=INTEGER},
+			</if>
+			<if test="number != null">
+				number = #{number,jdbcType=INTEGER},
+			</if>
+			<if test="image != null">
+				image = #{image,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="approveStatus != null">
+				approve_status = #{approveStatus,jdbcType=INTEGER},
+			</if>
+			<if test="approveResult != null">
+				approve_result = #{approveResult,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.crsri.mes.entity.ProducePartsInspectionApprove">
+		update t_produce_parts_inspection_approve
+		set parts_id =
+		#{partsId,jdbcType=VARCHAR},
+		parts_name =
+		#{partsName,jdbcType=VARCHAR},
+		parts_codes =
+		#{partsCodes,jdbcType=VARCHAR},
+		operator =
+		#{operator,jdbcType=VARCHAR},
+		parts_status =
+		#{partsStatus,jdbcType=INTEGER},
+		specification =
+		#{specification,jdbcType=INTEGER},
+		number = #{number,jdbcType=INTEGER},
+		image = #{image,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		approve_status = #{approveStatus,jdbcType=INTEGER},
+		approve_result =
+		#{approveResult,jdbcType=INTEGER},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="getPartsInspectionCountByProcessStatus"
+		parameterType="map" resultType="integer">
+		select
+		count(id)
+		from t_produce_parts_inspection_approve
+		<where>
+			<if test="partsName!=null">
+				and parts_name like concat(concat("%",#{partsName}),"%")
+			</if>
+			<if test="processInstanceType!=null">
+				and approve_status =#{processInstanceType}
+			</if>
+			<if test="operator!=null">
+				and operator like concat(concat("%",#{operator}),"%")
+			</if>
+			<if test="startTime !=null">
+				and create_time &gt;= #{startTime}
+			</if>
+			<if test="stopTime !=null">
+				and create_time &lt;= #{stopTime}
+			</if>
+		</where>
+	</select>
+	<select id="getPartInspectionList" parameterType="map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_produce_parts_inspection_approve
+		<where>
+			<if test="partsName!=null">
+				and parts_name like concat(concat("%",#{partsName}),"%")
+			</if>
+			<if test="processInstanceType!=null">
+				and approve_status =#{processInstanceType}
+			</if>
+			<if test="processInstanceResult!=null">
+				and approve_result =#{processInstanceResult}
+			</if>
+			<if test="operator!=null">
+				and operator like concat(concat("%",#{operator}),"%")
+			</if>
+			<if test="startTime !=null">
+				and create_time &gt;= #{startTime}
+			</if>
+			<if test="stopTime !=null">
+				and create_time &lt;= #{stopTime}
+			</if>
+		</where>
+		order by create_time desc
+	</select>
+	<select id="getCount" parameterType="map" resultType="int">
+		select count(id) from t_produce_parts_inspection_approve
+		<where>
+			<if test="startTime !=null">
+				and create_time &gt;= #{startTime}
+			</if>
+			<if test="stopTime !=null">
+				and create_time &lt;= #{stopTime}
+			</if>
+		</where>
+	</select>
+	<select id="getCategoryTypes" parameterType="map"
+		resultType="string">
+		select parts_name 
+		from 
+		t_produce_parts_inspection_approve
+		<where>
+			<if test="startTime !=null">
+				and create_time &gt;= #{startTime}
+			</if>
+			<if test="stopTime !=null">
+				and create_time &lt;= #{stopTime}
+			</if>
+		</where>
+		GROUP BY parts_name
+	</select>
+	<select id="getPartsInspectionReport" parameterType="map" resultType="map">
+        select
+        id as id,
+        parts_name as name,
+        number as number,
+        approve_status as process_instance_type,
+        approve_result as process_instance_result,
+        image, operator, remark,
+        create_time as time
+        from t_produce_parts_inspection_approve
+        <where>
+            <if test="startTime !=null">
+                and create_time &gt;= #{startTime}
+            </if>
+            <if test="stopTime !=null">
+                and create_time &lt;= #{stopTime}
+            </if>
+            <if test="operator !=null">
+                and operator = #{operator}
+            </if>
+            <if test="type !=null">
+                and parts_name = #{type}
+            </if>
+            order by create_time desc
+        </where>
+    </select>
+</mapper>

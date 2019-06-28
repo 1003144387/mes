@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crsri.mes.dao.ReportMapper">
+
+	<select id="getCount" parameterType="map" resultType="int" >
+		select count(id)
+		from ${tableName}
+		<where>
+			<if test="goodsType !=null">
+				and goods_type =#{goodsType}
+			</if>
+			<if test="startTime !=null">
+				and create_time &gt;= #{startTime}
+			</if>
+			<if test="stopTime !=null">
+				and create_time &lt;= #{stopTime}
+			</if>
+		</where>
+	</select>
+	<select id="getOperators" parameterType="map" resultType="string" >
+		select operator
+		from ${tableName}
+		<where>
+			<if test="goodsType !=null">
+				and goods_type =#{goodsType}
+			</if>
+			<if test="startTime !=null">
+				and create_time &gt;= #{startTime}
+			</if>
+			<if test="stopTime !=null">
+				and create_time &lt;= #{stopTime}
+			</if>
+		</where>
+		group by operator
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

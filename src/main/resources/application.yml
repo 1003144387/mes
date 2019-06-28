@@ -1,0 +1,98 @@
+server:
+  port: 9090
+web:
+  ## 图片上传地址
+  upload-path: D:/CK-MES/data/
+  ## 主机地址
+  host:  http://106.14.99.110:9090/
+  
+spring:
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
+  jackson:
+    default-property-inclusion: NON_NULL
+  datasource:
+    name: test
+#    url: jdbc:mysql://localhost:20086/mes?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://localhost:3306/mes?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: gcaqs123
+#    password: Gcaqs106.14.99.110
+    driverClassName: com.mysql.cj.jdbc.Driver
+    # druid配置
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 配置Druid的其他参数，以下配置必须增加一个配置文件才能有效
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat, wall
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 512MB 
+  ## 发送邮件的配置
+  mail:
+    host: smtp.qq.com
+    username: 602173141@qq.com
+    password: arhpaitjquakbdif   
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.crsri.mes.entity
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+logging:
+  level:
+    com.crsri.mes.dao: DEBUG
+  config: classpath:logback-spring.xml
+  ## win
+  path: D:/CK-MES/data/logs
+## OSS 配置
+OSS:
+  endpoint: http://oss-cn-beijing.aliyuncs.com
+  accessKeyId: LTAIGyehtXx2hGAX
+  accessKeySecret: LsbDYHLDYzfytBDNbRSnviYE8KajKE
+  bucketName: ck-mes
+  localFilePath: D:/CK-MES/data/upload
+  basePath: upload
+
+   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
